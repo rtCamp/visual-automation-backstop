@@ -16,7 +16,7 @@
   "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
-      "label": "rtMedia Home Page",
+      "label": "rtMedia Home",
       "url": "https://rtcamp:goodwork@rtmedia-dev.rtm.rt.gw",
       "referenceUrl": "https://rtmedia.io",
       "readyEvent": "",
@@ -41,7 +41,7 @@
     "html_report": "backstop_data/html_report",
     "ci_report": "backstop_data/ci_report"
   },
-  "report": ["browser"],
+  "report": ["CI"],
   "engine": "puppeteer",
   "engineOptions": {
     "args": ["--no-sandbox"]
