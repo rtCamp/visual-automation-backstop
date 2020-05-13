@@ -1,0 +1,23 @@
+on:
+  push: # Run this action when push event triggers.
+    branches: # Run this action on specified branches
+      - develop # Branch name
+
+name: Run BackstopJS test cases # Name of the action
+jobs:
+  Run-BackstopJS-TestCase:
+    name: Run BackstopJS test Case #
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Install BackstopJS Dependecy 
+      run: npm install
+    
+    - name: Create reference screenshot from source site
+      run: backstop reference
+
+    - name: Run the test(It will take the screenshot of the given site and will test against reference screenshot)
+      run: backstop test
+
+      
+
