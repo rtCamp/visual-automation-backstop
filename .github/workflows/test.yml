@@ -19,11 +19,17 @@ jobs:
     - name: Run the test(It will take the screenshot of the given site and will test against reference screenshot)
       run: ./node_modules/backstopjs/cli/index.js test 
     
-    - name: Download HTML Report
+    - name: Archive HTML Report
       uses: actions/upload-artifact@v1
       with:
-        name: HTML Report
+        name: html-report
         path: backstop_data/html_report/index.html
+
+     - name: Archive JUnit Report
+       uses: actions/upload-artifact@v1
+       with:
+         name: junit-report
+         path: backstop_data/ci_report/xunit.xml
 
       
 
