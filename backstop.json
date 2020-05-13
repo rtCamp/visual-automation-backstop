@@ -16,7 +16,7 @@
   "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
-      "label": "VideoJet About Us",
+      "label": "rtMedia Home Page",
       "url": "https://rtcamp:goodwork@rtmedia-dev.rtm.rt.gw",
       "referenceUrl": "https://rtmedia.io",
       "readyEvent": "",
