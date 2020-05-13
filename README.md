@@ -3,7 +3,7 @@ Script to do visual testing with [BackstopJS](https://github.com/garris/Backstop
 
 ## Run the tests
 1. Install depedencies 
-`npm install`
+`npm install -g backstopjs`
 
 2. Create reference screenshot from source site (For expected results)
 `backstop reference`

@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Install BackstopJS Dependecy 
-      run: npm install
+      run: npm install -g backstopjs
     
     - name: Create reference screenshot from source site
       run: backstop reference
