@@ -23,7 +23,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: HTML Report
-        path: ./backstop_data/html_report/index.html
+        path: backstop_data/html_report/index.html
 
       
 
