@@ -9,4 +9,4 @@ Script to do visual testing with [BackstopJS](https://github.com/garris/Backstop
 `backstop reference`
 
 3. Run the test(It will take the screenshot of the given site and will test against reference screenshot)
-`backstop 
+`backstop  test`
