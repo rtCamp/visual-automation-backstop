@@ -23,27 +23,16 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: html-report
-        path: backstop_data/html_report/
+        path: backstop_data/
 
     - name: Archive HTML Report on failure
       if: failure()
       uses: actions/upload-artifact@v1
       with:
         name: html-report
-        path: backstop_data/html_report/
+        path: backstop_data/
 
-    - name: Archive JUnit Report
-      uses: actions/upload-artifact@v1
-      with:
-        name: junit-report
-        path: backstop_data/ci_report/xunit.xml
-      
-    - name: Archive JUnit Report
-      if: failure()
-      uses: actions/upload-artifact@v1
-      with:
-        name: junit-report
-        path: backstop_data/ci_report/xunit.xml
+   
 
       
 
