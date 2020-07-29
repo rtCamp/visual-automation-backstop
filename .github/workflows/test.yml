@@ -7,7 +7,7 @@ name: Run BackstopJS test cases # Name of the action
 jobs:
   Run-BackstopJS-TestCase:
     name: Run BackstopJS test Case #
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
     - uses: actions/checkout@v2
     - name: Install BackstopJS Dependecy 
@@ -31,8 +31,6 @@ jobs:
       with:
         name: html-report
         path: backstop_data/
-
-   
-
-      
-
+    - name: Cleanup
+      if: ${{ always() }}
+      uses: rtCamp/action-cleanup@master
