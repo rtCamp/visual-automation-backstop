@@ -7,11 +7,12 @@ basicConfig.relativeUrls.map(relativeUrl => {
   scenarios.push({
     label: relativeUrl,
     url: `${basicConfig.baseUrl}${relativeUrl}`,
-    referenceUrl: basicConfig.referenceUrl,
+    referenceUrl: `${basicConfig.referenceUrl}${relativeUrl}`,
     delay: THREE_SECONDS_IN_MS,
     requireSameDimensions: false
     // readyEvent: "page_loaded"
   });
+  // console.log("reference url "+`${basicConfig.referenceUrl}${relativeUrl}`)
 });
 
 basicConfig.viewports.map(viewport => {
