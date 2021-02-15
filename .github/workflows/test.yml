@@ -1,7 +1,7 @@
 on:
   push: # Run this action when push event triggers.
     branches: # Run this action on specified branches
-      - develop # Branch name
+      - choose-tests # Branch name
 
 name: Run BackstopJS test cases # Name of the action
 jobs:
