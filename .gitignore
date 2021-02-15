@@ -1,3 +1,4 @@
 ./backstop_data/bitmaps_test
 ./backstop_data/bitmaps_reference
 ./html_report
+node_modules

@@ -1,17 +1,21 @@
 {
-    "name": "visual-automation-backstopjs",
-    "author": "Juhi",
-    "version": "1.0.0",
-    "keywords": [],
-    "homepage": "https://github.com/rtCamp/visual-automation-backstop",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/rtCamp/visual-automation-backstop.git"
-    },
-    "description": "",
-    "contributors": [],
-    "dependencies": {},
-    "devDependencies": {
-        "backstopjs": "5.0.1"
-    }
+  "name": "visual-automation",
+  "description": "Backstop Tests",
+  "version": "1.0.0",
+  "scripts": {
+    "backstop:reference": "backstop reference --config=test/mainConfig.js",
+    "reference": "npm run backstop:reference",
+    "backstop:test": "backstop test --config=test/mainConfig.js",
+    "test": "npm run backstop:test"
+  },
+  "author": "Juhi Saxena",
+  "license": "MIT",
+  "dependencies": {
+    "backstopjs": "5.0.1",
+    "current-git-branch": "1.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rtCamp/rtcamp.com"
+  }
 }
