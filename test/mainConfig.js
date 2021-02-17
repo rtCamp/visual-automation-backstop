@@ -3,20 +3,25 @@ const THREE_SECONDS_IN_MS = 3000;
 const scenarios = [];
 const viewports = [];
 
-basicConfig.relativeUrls.map(relativeUrl => {
+basicConfig.config.map(config => {
   scenarios.push({
-    label: relativeUrl,
-    url: `${basicConfig.baseUrl}${relativeUrl}`,
-    referenceUrl: `${basicConfig.referenceUrl}${relativeUrl}`,
+    label: config.relURL,
+    url: `${basicConfig.baseUrl}${config.relURL}`,
+    referenceUrl: `${basicConfig.referenceUrl}${config.relURL}`, //If you haven't set refrenceUrl in basicConfig.js, you don't need to add here too
     delay: THREE_SECONDS_IN_MS,
-    requireSameDimensions: false
+    requireSameDimensions: false,
+    scrollToSelector: config.scrlSelector, //Use only If scrlSelector is set
+    removeSelectors: [config.rmvSelector], //Use only If rmvSelector is set
+    onReadyScript:  "onReadyScript.js"
     // readyEvent: "page_loaded"
   });
-  // console.log("reference url "+`${basicConfig.referenceUrl}${relativeUrl}`)
 });
 
+
 basicConfig.viewports.map(viewport => {
- 
+  if (viewport === "phone") {
+    pushViewport(viewport, 320, 480);
+  }
   if (viewport === "tablet") {
     pushViewport(viewport, 1024, 768);
   }
@@ -38,9 +43,11 @@ module.exports = {
   viewports,
   scenarios,
   paths: {
-    bitmaps_reference: "test/backstop_data/bitmaps_reference",
-    bitmaps_test: "test/backstop_data/bitmaps_test",
-    html_report: "test/backstop_data/html_report"
+    bitmaps_reference: "backstop_data/bitmaps_reference",
+    bitmaps_test: "backstop_data/bitmaps_test",
+    html_report: "backstop_data/html_report",
+    engine_scripts: "test/engine_scripts"
+
   },
   report: ["CI"],
   engine: "puppeteer",

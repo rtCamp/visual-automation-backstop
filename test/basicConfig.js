@@ -1,160 +1,57 @@
-const baseUrl = "https://www.vinsolutions.com/choose"
-const referenceUrl = "https://vinsolutions-preprod.go-vip.net/choose"
-// const baseUrl = "https://vinsolutions.dev6.rt.gw/choose"; // Replace the value "http://example.com" by the base URL of the website you want to test.
+const baseUrl = "https://example.com" // Replace the value "https://example.com" by the base URL of the website you want to test.
+const referenceUrl = "https://reference.com" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with.
+
 const projectId = "sample project"; // Replace the value "sample project" by the id of your project. It can be any string (e.g., "my-website").
+
+let config = []; 
 
 // Replace the values of the below array with the relative URLs of your website. E.g., "/about", "/contact", "/pricing", etc.
 // Use just "/" to test the homepage of your website.
 // Add as many relative URLs as you need.
 const relativeUrls = [
-  "/",
-  "/crm-ai/",
-  "/infographic/",
-  "/paa/",
-  "/gm",
-  "/appointment",
-  "/targetproplus",
-  "/nysada/",
-  "sne",
-  "hellovin",
-  "vada",
-  "/insights",
-  "/vinlens",
-  "/nada",
-  "/digitaldealer",
-  "/lotvantage",
-  "/700credit",
-  "/vauto",
-  "/cpa",
-  "/implementation",
-  "/connect-ai",
-  "/dealer-com/",
-"/crm-university/",
-"/texting-video/",
-"/client-resources",
-"/privacy-policy",
-"/magic-johnson/",
-"/fca-canada/",
-"/vin2020-book",
-"/case-study/",
-"/personalization-guide/",
-"/business-continuity/",
-"/crm-ai",
-"/vinworx-register/",
-"/connect-desking",
-"/texting-infographic",
-"/meetvin-2",
-"/imr-turnkey/",
-"/flick-fusion",
-"/facebook-messenger/",
-"/crm-superpowers/",
-  "/webinar-register/",
-  "/vinlens-infographic/",
-  "/texting-slick",
-  "/hellovin-2/",
-  "/find-opportunity-now/",
-  "/download/pm-guide/",
-  "/vinlens-infographic-content/",
-  "/performance-management-contact/",
-  "/crm-demonstration/content/",
-  "/ai-myths/moreinfo/",
-  "/vauto-integration-video/",
-  "/here-for-you/",
-  "/case-study/content/",
-  "/tpp-product-video/",
-  "/nada-2020-gallery/",
-  "/tpp-interview-video/",
-  "/connect-crm-desking/",
-  "/vinsolutions-connect-texting/",
-  "/ai-myths/mohawk/",
-  "/key-considerations-ebook/",
-  "/about-performance-management/",
-  "/new-connect-texting/",
-  "/flick-fusion-webinar/",
-  "/cpa/thank-you-consumer/",
-  "/ai-myths/myth-1/",
-  "/subaru-of-new-england/",
-  "/client-resources/best-practices/",
-  "/thank-you/insights/",
-  "/does-your-crm-deliver/",
-  "/ai-myths/ai-vocab/",
-  "/thank-you/vin2020-book_thankyou/",
-  "/download/onboarding-process-guide/",
-  "/desking-demo/content-2/",
-  "/building-your-remote-dealership/",
-  "/common-sign-in-faq/",
-  "/ai-myths/artificial-intelligence-book/",
-  "/ai-myths/ai-interactive-brochure/",
-  "/ai-myths/ai-product-video/",
-  "/bring-kids-to-school-day/",
-  "/ai-myths/video-ai-interview/",
-  "/ai-myths/podcast-lori-wittman/",
-  "/download/vinsolutions-call-tracking-product-information/",
-  "/ai-myths/demystify-ai-webinar/content/",
-  "/ai-myths/the-future-is-now/",
-  "/ai-myths/artificial-intelligence-myth-2/",
-  "/ai-myths/artificial-intelligence-myth-3/",
-  "/ai-myths/artificial-intelligence-white-paper/",
-  "/does-your-crm-deliver/result-process-success/",
-  "/does-your-crm-deliver/result-process-complexity/",
-  "/ai-myths/technology-and-the-transformation-of-retail-white-paper/",
-  "/business-continuity/",
-  "/crm-ai",
-  "/vinworx-register/",
-  "/connect-desking",
-  "/texting-infographic",
-  "/meetvin-2",
-  "/imr-turnkey/",
-  "/flick-fusion",
-  "/facebook-messenger/",
-  "/crm-superpowers/",
-  "/dealer-com/",
-"/crm-university/",
-"/texting-video/",
-"/client-resources",
-"/privacy-policy",
-"/magic-johnson/",
-"/fca-canada/",
-"/vin2020-book",
-"/case-study/",
-"/personalization-guide/",
-"/insights",
-"/vinlens",
-"/nada",
-"/digitaldealer",
-"/lotvantage",
-"/700credit",
-"/vauto",
-"/cpa",
-"/implementation",
-"/connect-ai",
-"/",
-  "/crm-ai/",
-  "/infographic/",
-  "/paa/",
-  "/gm",
-  "/appointment",
-  "/targetproplus",
-  "/nysada/",
-  "sne",
-  "/hellovin",
-  "/vada"
-
+  "/slug1",
+  "/slug2"
 ];
+
+//If you need to add any selector specific to some URLs, you may add here 
+relativeUrls.map(relativeUrl => {
+  if (relativeUrl === "/slug1" || relativeUrl === "/slug1/?amp") {
+    scrollToSelector = "a.wp-block-button__link"; 
+    config.push({
+      relURL: relativeUrl,
+      scrlSelector: scrollToSelector, //To scroll to some specific selector
+      rmvSelector: ".is-style-image-banner" //To remove any non stable selector from page
+     })
+  }
+  else if (relativeUrl === "/slug2") {
+    config.push({
+      relURL: relativeUrl,
+      rmvSelector: ".div.ytp-impression-link-content" //To remove any non stable selector from page 
+     })
+  }
+  else {
+    //If you don't need any specific selector to be removed or any other condition
+    // then just add below block and remove other code
+    config.push({
+      relURL: relativeUrl
+     })
+  }
+});
 
 // Leave the below array as is if you want to test your website using the viewports listed below.
 // The suported viewports are: phone (320px X 480px), tablet (1024px X 768px), and desktop (1280px X 1024px).
 // No other viewports are supported.
 // You can remove the viewports that you don't need, but at least one of them is required.
 const viewports = [
+  "phone",
   "tablet",
-  "desktop"
+  "desktop",
 ];
 
 module.exports = {
   baseUrl,
   projectId,
-  relativeUrls,
   viewports,
-  referenceUrl
+  referenceUrl, //Optional
+  config 
 };

@@ -1,7 +1,7 @@
 on:
   push: # Run this action when push event triggers.
     branches: # Run this action on specified branches
-      - choose-tests # Branch name
+      - basic-framework # Branch name
 
 name: Run BackstopJS test cases # Name of the action
 jobs:
@@ -30,7 +30,7 @@ jobs:
       uses: actions/upload-artifact@v1
       with:
         name: html-report
-        path: ./test/backstop_data/
+        path: ./backstop_data/
     - name: Cleanup
       if: ${{ always() }}
       uses: rtCamp/action-cleanup@master
