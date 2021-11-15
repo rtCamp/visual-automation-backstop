@@ -6,7 +6,11 @@ Script to do visual testing with [BackstopJS](https://github.com/garris/Backstop
 `npm install`
 
 2. Create reference screenshot from source site (For expected results)
-`backstop reference`
+`backstop reference` or `npm run reference` 
 
 3. Run the test(It will take the screenshot of the given site and will test against reference screenshot)
-`backstop 
+`backstop test` or `npm run test`
+
+NOTE: If you are using the basic framework then `npm run referece & npm run test` commands will work for creating reference screenshots & running the test respectively. 
+
+If you are using the basic BacksstopJS installation with backstop.json file then `backstop reference & backstop test` commands will work. 
