@@ -1,5 +1,5 @@
 {
-  "id": "test",
+  "id": "backstop_default",
   "viewports": [
     {
       "label": "phone",
@@ -10,29 +10,73 @@
       "label": "tablet",
       "width": 1024,
       "height": 768
+    },
+    {
+      "label": "Desktop",
+      "width": 1920,
+      "height": 1080
     }
+
   ],
-  "onBeforeScript": "puppet/onBefore.js",
-  "onReadyScript": "puppet/onReady.js",
   "scenarios": [
     {
-      "label": "rtMedia",
-      "url": "https://rtmedia.io",
-      "referenceUrl": "https://rtmedia.io",
-      "readyEvent": "",
-      "readySelector": "",
-      "delay": 0,
-      "hideSelectors": [],
-      "removeSelectors": [],
-      "hoverSelector": "",
-      "clickSelector": "",
-      "postInteractionWait": 0,
-      "selectors": [],
-      "selectorExpansion": true,
-      "expect": 0,
-      "misMatchThreshold" : 0.1,
-      "requireSameDimensions": true
+      "label": "rtCamp home page",
+      "url": "https://rtcamp.com/",
+      "referenceUrl": "https://rtcamp.com/"
+    },
+    {
+      "label": "rtCamp case-studies page", 
+      "url": "https://rtcamp.com/case-studies/",
+      "referenceUrl": "https://rtcamp.com/case-studies/"
+    },
+    {
+      "label": "rtCamp soluctions page", 
+      "url": "https://rtcamp.com/solutions/",
+      "referenceUrl": "https://rtcamp.com/solutions/"
+    },
+    {
+      "label": "rtCamp careers page", 
+      "url": "https://rtcamp.com/careers/",
+      "referenceUrl": "https://rtcamp.com/careers/"
+    },
+    
+    {
+      "label": "rtCamp blog page", 
+    
+      "url": "https://rtcamp.com/blog/",
+      "referenceUrl": "https://rtcamp.com/blog/"
+    },
+    {
+      "label": "rtCamp contact page",
+      "url": "https://rtcamp.com/contact/",
+      "referenceUrl": "https://rtcamp.com/contact/"
+    },
+    {
+      "label": "rtCamp inside blog page",
+      "url": "https://rtcamp.com/blog/100-rtcampers/",
+      "referenceUrl": "https://rtcamp.com/blog/100-rtcampers/"
+    },
+    {
+      "label": "rtCamp create job page",
+      "url": "https://rtcamp.com//careers/diy-job/",
+      "referenceUrl": "https://rtcamp.com//careers/diy-job/"
+    },
+    {
+      "label": "rtCamp terms page",
+      "url": "https://rtcamp.com/tos/",
+      "referenceUrl": "https://rtcamp.com/tos/"
+    },
+    {
+      "label": "rtCamp privacy page",
+      "url": "https://rtcamp.com/privacy-policy/",
+      "referenceUrl": "https://rtcamp.com/privacy-policy/"
+    },
+    {
+      "label": "rtCamp About page",
+      "url": "https://rtcamp.com/about/",
+      "referenceUrl": "https://rtcamp.com/about/"
     }
+
   ],
   "paths": {
     "bitmaps_reference": "backstop_data/bitmaps_reference",
