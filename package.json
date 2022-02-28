@@ -12,6 +12,6 @@
     "contributors": [],
     "dependencies": {},
     "devDependencies": {
-        "backstopjs": "5.0.1"
+        "backstopjs": "6.0.4"
     }
 }
