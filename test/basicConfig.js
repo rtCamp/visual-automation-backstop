@@ -1,7 +1,7 @@
 const baseUrl = "https://example.com" // Replace the value "https://example.com" by the base URL of the website you want to test.
 const referenceUrl = "https://reference.com" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with.
 
-const projectId = "sample project"; // Replace the value "sample project" by the id of your project. It can be any string (e.g., "my-website").
+const projectId = "rtMedia Visual test"; // Replace the value "sample project" by the id of your project. It can be any string (e.g., "my-website").
 
 let config = []; 
 
