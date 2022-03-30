@@ -7,7 +7,11 @@
     "backstop:reference": "backstop reference --config=test/mainConfig.js",
     "reference": "npm run backstop:reference",
     "backstop:test": "backstop test --config=test/mainConfig.js",
-    "test": "npm run backstop:test"
+    "test": "npm run backstop:test",
+    "reference:csv": "npm run parse:csv && backstop reference --config=test/mainConfigCSV.js",
+    "test:csv": "backstop test --config=test/mainConfigCSV.js"
+
+
   },
   "author": "Juhi Saxena",
   "license": "MIT",
