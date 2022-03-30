@@ -11,7 +11,7 @@ If you have thousands of URLs that you would like to test then you should config
 2. After downloading just replace the URLs in CSV file and keep this in `./data/` directory or whatever path you prefer. Just make sure to add the path in package.json under `input`
 
 ### Keep the URLs in code only 
-If you have only few URLs and don't want to maintain a seperate CSV file. You should configure the following file
+If you have only few URLs and don't want to maintain a seperate CSV file. You should configure mainConfig.js
 1. Change the `baseUrl`, `referenceUrl` as per your requirement.  
 2. Add the slugs in `relativeUrls` array. 
 
