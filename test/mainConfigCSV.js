@@ -24,7 +24,6 @@ scenarioJSON.map((s) => {
     selectorExpansion: true,
     expect: 0,
     misMatchThreshold: 0.1,
-    requireSameDimensions: true,
   };
   testScenarios.push({ ...obj, ...s }); // merging url,obj
 });
@@ -48,14 +47,6 @@ function pushViewport(viewport, width, height) {
       height,
     });
   }
-
-function pushViewport(viewport, width, height) {
-  viewports.push({
-    name: viewport,
-    width,
-    height,
-  });
-}
 
 module.exports = {
   id: basicConfig.projectId,

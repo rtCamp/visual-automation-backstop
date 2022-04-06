@@ -5,8 +5,6 @@ const viewports = [];
 const baseUrl = "https://rtmedia.io" // Replace the value "https://example.com" by the base URL of the website you want to test.
 const referenceUrl = "https://rtmedia-dev.rtm.rt.gw" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with.
 
-const projectId = "rtMedia Visual test"; // Replace the value "sample project" by the id of your project. It can be any string (e.g., "my-website").
-
 let config = []; 
 
 // Replace the values of the below array with the relative URLs of your website. E.g., "/about", "/contact", "/pricing", etc.
@@ -40,7 +38,7 @@ relativeUrls.map(relativeUrl => {
       relURL: relativeUrl
      })
   }
-  console.log(config);
+  
 });
 
 config.map(config => {
