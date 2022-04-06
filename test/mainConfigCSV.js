@@ -14,6 +14,7 @@ scenarioJSON.map((s) => {
     readyEvent: "",
     readySelector: "",
     delay: THREE_SECONDS_IN_MS,
+    requireSameDimensions: false,
     hideSelectors: [],
     removeSelectors: [],
     hoverSelector: "",
@@ -23,7 +24,6 @@ scenarioJSON.map((s) => {
     selectorExpansion: true,
     expect: 0,
     misMatchThreshold: 0.1,
-    requireSameDimensions: true,
   };
   testScenarios.push({ ...obj, ...s }); // merging url,obj
 });
