@@ -14,7 +14,6 @@ scenarioJSON.map((s) => {
     readyEvent: "",
     readySelector: "",
     delay: THREE_SECONDS_IN_MS,
-    requireSameDimensions: false,
     hideSelectors: [],
     removeSelectors: [],
     hoverSelector: "",
@@ -48,14 +47,6 @@ function pushViewport(viewport, width, height) {
       height,
     });
   }
-
-function pushViewport(viewport, width, height) {
-  viewports.push({
-    name: viewport,
-    width,
-    height,
-  });
-}
 
 module.exports = {
   id: basicConfig.projectId,
