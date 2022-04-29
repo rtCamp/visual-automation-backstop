@@ -26,6 +26,6 @@
     "url": "https://github.com/rtCamp/rtcamp.com"
   },
   "exclaim": {
-    "input": "./data/rtmediaUrls.csv"
+    "input": "./data/sampleUrls.csv"
   }
 }
