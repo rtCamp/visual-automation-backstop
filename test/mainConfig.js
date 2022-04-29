@@ -2,12 +2,54 @@ const basicConfig = require("./basicConfig");
 const THREE_SECONDS_IN_MS = 3000;
 const scenarios = [];
 const viewports = [];
+const baseUrl = "https://example.com" // Replace the value "https://example.com" by the base URL of the website you want to test. It could be your development site and you want to make sure recent changes didn't break the UI
+const referenceUrl = "https://example.com" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with. It could be your production site.
 
-basicConfig.config.map(config => {
+let config = []; 
+
+// Replace the values of the below array with the relative URLs of your website. E.g., "/about", "/contact", "/pricing", etc.
+// Use just "/" to test the homepage of your website.
+// Add as many relative URLs as you need.
+const relativeUrls = [
+  "/",
+  "/slug1/"
+];
+
+//If you need to add any selector specific to some URLs, you may add here 
+//Kept the "slug2" so that it doesn't look for placeholder selctor
+relativeUrls.map(relativeUrl => {
+  if (relativeUrl === "/slug2" || relativeUrl === "/slug2/?amp") {
+    scrollToSelector = ".someselector"; 
+    rmvSelector = ".someselector1"
+    config.push({
+      relURL: relativeUrl,
+      scrlSelector: scrollToSelector, //To scroll to some specific selector
+      rmvSelector: rmvSelector //To remove any non stable selector from page
+     })
+  }
+  else if (relativeUrl === "/slug3") {
+    rmvSelector = ".someselector3"
+    config.push({
+      relURL: relativeUrl,
+      rmvSelector: rmvSelector //To remove any non stable selector from page 
+     })
+  }
+  else {
+    //If you don't need any specific selector to be removed or any other condition
+    // then just add below block and remove other code
+    config.push({
+      relURL: relativeUrl
+     })
+  }
+  
+});
+
+config.map(config => {
+  
   scenarios.push({
     label: config.relURL,
-    url: `${basicConfig.baseUrl}${config.relURL}`,
-    referenceUrl: `${basicConfig.referenceUrl}${config.relURL}`, //If you haven't set refrenceUrl in basicConfig.js, you don't need to add here too
+    url: `${baseUrl}${config.relURL}`,
+    referenceUrl: `${referenceUrl}${config.relURL}`, //If you haven't set refrenceUrl in basicConfig.js, you don't need to add here too  
     delay: THREE_SECONDS_IN_MS,
     requireSameDimensions: false,
     scrollToSelector: config.scrlSelector, //Use only If scrlSelector is set

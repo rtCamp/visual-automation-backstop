@@ -3,19 +3,29 @@
   "description": "Backstop Tests",
   "version": "1.0.0",
   "scripts": {
+    "parse:csv": "node ./bin/csv-parser.js",
     "backstop:reference": "backstop reference --config=test/mainConfig.js",
     "reference": "npm run backstop:reference",
     "backstop:test": "backstop test --config=test/mainConfig.js",
-    "test": "npm run backstop:test"
+    "test": "npm run backstop:test",
+    "reference:csv": "npm run parse:csv && backstop reference --config=test/mainConfigCSV.js",
+    "test:csv": "backstop test --config=test/mainConfigCSV.js"
+
+
   },
   "author": "Juhi Saxena",
   "license": "MIT",
   "dependencies": {
     "backstopjs": "6.0.4",
-    "current-git-branch": "1.1.0"
+    "csv-parser": "^3.0.0",
+    "current-git-branch": "1.1.0",
+    "fs": "^0.0.1-security"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/rtCamp/rtcamp.com"
+  },
+  "exclaim": {
+    "input": "./data/rtmediaUrls.csv"
   }
 }
