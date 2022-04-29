@@ -2,8 +2,8 @@ const basicConfig = require("./basicConfig");
 const THREE_SECONDS_IN_MS = 3000;
 const scenarios = [];
 const viewports = [];
-const baseUrl = "https://rtmedia.io" // Replace the value "https://example.com" by the base URL of the website you want to test.
-const referenceUrl = "https://rtmedia-dev.rtm.rt.gw" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with.
+const baseUrl = "https://example.com" // Replace the value "https://example.com" by the base URL of the website you want to test. It could be your development site and you want to make sure recent changes didn't break the UI
+const referenceUrl = "https://example.com" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with. It could be your production site.
 
 let config = []; 
 
@@ -12,23 +12,26 @@ let config = [];
 // Add as many relative URLs as you need.
 const relativeUrls = [
   "/",
-  "/plugins/"
+  "/slug1/"
 ];
 
 //If you need to add any selector specific to some URLs, you may add here 
+//Kept the "slug2" so that it doesn't look for placeholder selctor
 relativeUrls.map(relativeUrl => {
-  if (relativeUrl === "/slug1" || relativeUrl === "/slug1/?amp") {
-    scrollToSelector = "a.wp-block-button__link"; 
+  if (relativeUrl === "/slug2" || relativeUrl === "/slug2/?amp") {
+    scrollToSelector = ".someselector"; 
+    rmvSelector = ".someselector1"
     config.push({
       relURL: relativeUrl,
       scrlSelector: scrollToSelector, //To scroll to some specific selector
-      rmvSelector: ".is-style-image-banner" //To remove any non stable selector from page
+      rmvSelector: rmvSelector //To remove any non stable selector from page
      })
   }
-  else if (relativeUrl === "/slug2") {
+  else if (relativeUrl === "/slug3") {
+    rmvSelector = ".someselector3"
     config.push({
       relURL: relativeUrl,
-      rmvSelector: ".div.ytp-impression-link-content" //To remove any non stable selector from page 
+      rmvSelector: rmvSelector //To remove any non stable selector from page 
      })
   }
   else {

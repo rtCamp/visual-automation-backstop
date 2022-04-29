@@ -5,12 +5,12 @@ Script to do visual testing with [BackstopJS](https://github.com/garris/Backstop
 
 We have two options in this basic framework to run the tests. 
 
-### CSV file for URLs 
+### CSV file for URLs (Recommended for big projects)
 If you have thousands of URLs that you would like to test then you should configure the following files
 1. First you should have one CSV file having a standard format, you can download the Sample CSV file from [here](https://drive.google.com/file/d/1Jw4EjXcY4yWTghEePDJ1cnT0d1rwGrbQ/view)
 2. After downloading just replace the URLs in CSV file and keep this in `./data/` directory or whatever path you prefer. Just make sure to add the path in package.json under `input`
 
-### Keep the URLs in code only 
+### Keep the URLs in code only (Recommended for small projects)
 If you have only few URLs and don't want to maintain a seperate CSV file. You should configure mainConfig.js
 1. Change the `baseUrl`, `referenceUrl` as per your requirement.  
 2. Add the slugs in `relativeUrls` array. 

@@ -18,6 +18,12 @@ jobs:
 
     - name: Run the test(It will take the screenshot of the given site and will test against reference screenshot)
       run: npm run test
+
+    - name: Create reference screenshot of baseURLs mentioned in CSV file
+      run: npm run reference:csv
+
+    - name: Run the test(It will take the screenshot of the given site in CSV file and will test against reference screenshot)
+      run: npm run test:csv
     
    # - name: Archive HTML Report
     #   uses: actions/upload-artifact@v1
