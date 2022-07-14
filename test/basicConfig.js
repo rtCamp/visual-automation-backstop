@@ -1,5 +1,6 @@
 
-const projectId = "sample-project"; // Replace the value "sample-project" by the id of your project. It can be any string (e.g., "my-website").
+const dateString = new Date( Date.now() ).toLocaleDateString('en-US').replaceAll( '/', '-' ).replaceAll( ' ', '-' );
+const projectId = "project-" + dateString; // Replace the value "sample-project" by the id of your project. It can be any string (e.g., "my-website").
 
 // Leave the below array as is if you want to test your website using the viewports listed below.
 // The suported viewports are: phone (320px X 480px), tablet (1024px X 768px), and desktop (1280px X 1024px).

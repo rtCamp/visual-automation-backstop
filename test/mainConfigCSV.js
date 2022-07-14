@@ -1,6 +1,6 @@
 const basicConfig = require("./basicConfig");
 // Get user defined scenario json
-const scenarioJSON = require("../data/scenarios.json");
+const scenarioJSON = require('../data/scenarios-' + basicConfig.projectId + '.json');
 const THREE_SECONDS_IN_MS = 3000;
 const viewports = [];
 
@@ -10,7 +10,7 @@ let testScenarios = [];
 
 scenarioJSON.map((s) => {
   const obj = {
-    cookiePath: "backstop_data/engine_scripts/cookies.json",
+    cookiePath: "backstop_data/"+basicConfig.projectId+"/engine_scripts/cookies.json",
     readyEvent: "",
     readySelector: "",
     delay: THREE_SECONDS_IN_MS,
@@ -48,14 +48,16 @@ function pushViewport(viewport, width, height) {
     });
   }
 
+console.log( 'ProjectID|'+basicConfig.projectId )
+
 module.exports = {
   id: basicConfig.projectId,
   viewports,
   scenarios: testScenarios,
   paths: {
-    bitmaps_reference: "backstop_data/bitmaps_reference",
-    bitmaps_test: "backstop_data/bitmaps_test",
-    html_report: "backstop_data/html_report",
+    bitmaps_reference: "backstop_data/"+basicConfig.projectId+"/bitmaps_reference",
+    bitmaps_test: "backstop_data/"+basicConfig.projectId+"/bitmaps_test",
+    html_report: "backstop_data/"+basicConfig.projectId+"/html_report",
     engine_scripts: "test/engine_scripts"
 
   },

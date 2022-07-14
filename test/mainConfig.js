@@ -85,9 +85,9 @@ module.exports = {
   viewports,
   scenarios,
   paths: {
-    bitmaps_reference: "backstop_data/bitmaps_reference",
-    bitmaps_test: "backstop_data/bitmaps_test",
-    html_report: "backstop_data/html_report",
+    bitmaps_reference: "backstop_data/"+basicConfig.projectId+"/bitmaps_reference",
+    bitmaps_test: "backstop_data/"+basicConfig.projectId+"/bitmaps_test",
+    html_report: "backstop_data/"+basicConfig.projectId+"/html_report",
     engine_scripts: "test/engine_scripts"
 
   },
