@@ -1,4 +1,4 @@
-# Visual Automation with BackstopJS (test)
+# Visual Automation with BackstopJS
 Script to do visual testing with [BackstopJS](https://github.com/garris/BackstopJS)
 
 ## Configuration
