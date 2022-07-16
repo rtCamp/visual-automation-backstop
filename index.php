@@ -239,7 +239,6 @@ add_action(
 					] );
 
 					$project_id = $id . '-' . sanitize_file_name( parse_url( $live_url, PHP_URL_HOST ) );
-					error_log( $project_id );
 
 					update_post_meta( $id, 'live_url', esc_url_raw( $live_url ) );
 					update_post_meta( $id, 'dev_url', esc_url_raw( $dev_url ) );
@@ -322,7 +321,7 @@ function xml_sitemap_to_csv( $post ) {
 		]);
 
 		foreach ($urls as $key => $url) {
-			// if ( $key > 10 ) { continue; } // limit URL count for shorter test runs.
+			if ( $key > 10 ) { continue; } // limit URL count for shorter test runs.
 			fputcsv($fp, [
 				sanitize_title( $url ),
 				esc_url_raw( $url ),
@@ -365,9 +364,7 @@ function start_backstop_reference( $post ) {
 		$project_id,
 		$project_id
 	);
-	error_log( $command );
 	$output = shell_exec( $command );
-	error_log( $output );
 }
 
 function start_backstop_test( $post ) {
@@ -387,9 +384,7 @@ function start_backstop_test( $post ) {
 			$prefix,
 			$project_id
 		);
-		error_log( $command );
 		$output = shell_exec( $command );
-		error_log( $output );
 
 		return false;
 	}else {
