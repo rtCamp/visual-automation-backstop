@@ -339,6 +339,9 @@ function xml_sitemap_to_csv( $post ) {
 add_action(
 	'wp_ajax_nopriv_visual-start-reference',
 	function(){
+		if ( $_GET['key'] !== md5( md5_file( __FILE__ ) . date( 'Y-m-d' ) ) ) {
+			return;
+		}
 		$post = get_post( (int) $_GET['id'] );
 		start_backstop_reference( $post );
 		exit;
@@ -347,6 +350,9 @@ add_action(
 add_action(
 	'wp_ajax_nopriv_visual-start-test',
 	function(){
+		if ( $_GET['key'] !== md5( md5_file( __FILE__ ) . date( 'Y-m-d' ) ) ) {
+			return;
+		}
 		$post = get_post( (int) $_GET['id'] );
 		start_backstop_test( $post );
 		exit;
@@ -418,6 +424,7 @@ add_filter(
 						[
 							'action' => 'visual-start-reference',
 							'id' => get_the_ID(),
+							'key' => md5( md5_file( __FILE__ ) . date( 'Y-m-d' ) ),
 						],
 						admin_url( 'admin-ajax.php' )
 					),
@@ -476,6 +483,7 @@ add_filter(
 							[
 								'action' => 'visual-start-test',
 								'id' => get_the_ID(),
+								'key' => md5( md5_file( __FILE__ ) . date( 'Y-m-d' ) ),
 							],
 							admin_url( 'admin-ajax.php' )
 						),
