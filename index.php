@@ -10,6 +10,8 @@
 
 namespace Visual;
 
+if ( ! defined( 'ABSPATH') ) { exit; }
+
 add_action(
 	'init',
 	function(){
@@ -27,6 +29,8 @@ add_action(
 </form>
 <div id="visual-queue">
 	<?php
+	global $post;
+
 	$q = new \WP_Query([
 		'post_type' => 'visual',
 		'post_status' => 'publish',
@@ -45,12 +49,12 @@ add_action(
 
 		if ( 'processing' === $status ) {
 			printf(
-				'<article data-id="%d" data-status="%s"><a href="%s">%s</a> %s</article>',
+				'<article data-id="%d" data-status="%s"><a href="%s">%s: %s</a></article>',
 				get_the_ID(),
 				esc_attr( $status ),
 				esc_url( get_the_permalink() ),
 				esc_html( get_the_title() ),
-				wp_kses_post( get_the_content() )
+				apply_filters( 'the_content', $post->post_content )
 			);
 		}else {
 			$url = plugins_url( sprintf(
@@ -59,7 +63,9 @@ add_action(
 			), __FILE__ );
 
 			printf(
-				'%s <a href="%s">%s</a>',
+				'<article data-id="%d" data-status="%s">%s <a href="%s">%s</a></article>',
+				get_the_ID(),
+				esc_attr( $status ),
 				get_the_title(),
 				esc_url( $url  ),
 				__( 'Report', 'visual' )
@@ -191,7 +197,9 @@ jQuery(document).ready( function($){
 					},
 					success : function( r ) {
 						if ( -1 !== r.content.rendered.indexOf('Report') ) {
-							$article.html( r.title.rendered + ': ' + r.content.rendered )
+							$article
+								.html( r.title.rendered + ': ' + r.content.rendered )
+								.attr( 'data-status', 'complete' );
 						}else {
 							$article.find('a').text( r.title.rendered + ': ' + r.content.rendered );
 						}
@@ -223,45 +231,32 @@ add_action(
 					$dev_url = $request->get_param( 'dev' );
 					$post_title = $live_url . ' <> ' . $dev_url;
 
-					$todays_visual = get_posts([
-						'post_type' => 'visual',
+					$id = \wp_insert_post( [
 						'post_title' => $post_title,
-						'date_query' => array(
-							'after' => 'today',
-							'inclusive'         => true,
-						),
-						'posts_per_page' => 1,
-					]);
+						'post_content' => '',
+						'post_type' => 'visual',
+						'post_status' => 'publish',
+					] );
 
-					if ( ! empty( $todays_visual ) ) {
-						$post = $todays_visual[0];
-					}else {
-						$id = \wp_insert_post( [
-							'post_title' => $post_title,
-							'post_content' => '',
-							'post_type' => 'visual',
-							'post_status' => 'publish',
-						] );
+					$project_id = $id . '-' . sanitize_file_name( parse_url( $live_url, PHP_URL_HOST ) );
+					error_log( $project_id );
 
-						date_default_timezone_set( wp_timezone_string() );
+					update_post_meta( $id, 'live_url', esc_url_raw( $live_url ) );
+					update_post_meta( $id, 'dev_url', esc_url_raw( $dev_url ) );
+					update_post_meta( $id, 'project_id', $project_id );
+					update_post_meta( $id, 'status', 'processing' );
 
-						update_post_meta( $id, 'live_url', esc_url_raw( $live_url ) );
-						update_post_meta( $id, 'dev_url', esc_url_raw( $dev_url ) );
-						update_post_meta( $id, 'project_id', 'project-' . date('n-j-Y') );
-						update_post_meta( $id, 'status', 'processing' );
+					sleep(1);
 
-						\clean_post_cache( $id );
-						$post = get_post( $id );
-						\setup_postdata( $post );
-					}
+					\clean_post_cache( $id );
+					$post = get_post( $id );
+					\setup_postdata( $post );
 
 					add_action(
 						'shutdown',
 						function() use ( $post ) {
-
 							xml_sitemap_to_csv( $post );
-							start_backstop_reference( $post );
-
+							exit;
 						}
 					);
 
@@ -327,7 +322,7 @@ function xml_sitemap_to_csv( $post ) {
 		]);
 
 		foreach ($urls as $key => $url) {
-			// if ( $key > 10 ) { continue; } // limit URL count for shorter test runs.
+			if ( $key > 10 ) { continue; } // limit URL count for shorter test runs.
 			fputcsv($fp, [
 				sanitize_title( $url ),
 				esc_url_raw( $url ),
@@ -342,13 +337,37 @@ function xml_sitemap_to_csv( $post ) {
 	}
 }
 
+add_action(
+	'wp_ajax_nopriv_visual-start-reference',
+	function(){
+		$post = get_post( (int) $_GET['id'] );
+		start_backstop_reference( $post );
+		exit;
+	}
+);
+add_action(
+	'wp_ajax_nopriv_visual-start-test',
+	function(){
+		$post = get_post( (int) $_GET['id'] );
+		start_backstop_test( $post );
+		exit;
+	}
+);
 
 function start_backstop_reference( $post ) {
-	$prefix = 'export PATH="/opt/homebrew/bin/:$PATH" && cd ' . __DIR__ . ' && '; // Assume node installed with homebrew.
+	$prefix = 'export PATH="/opt/homebrew/bin/:$PATH" && cd "' . __DIR__ . '" && '; // Assume node installed with homebrew.
 
-	// @todo: Pass project_id as CLI argument.
-	$command = $prefix . 'npm run reference:csv 2>&1';
+	$project_id = get_post_meta( $post->ID, 'project_id', true );
+
+	$command =  sprintf(
+		'%s node ./bin/csv-parser.js --project_id="%s" && backstop reference --config=test/mainConfigCSV.js --project_id="%s"',
+		$prefix,
+		$project_id,
+		$project_id
+	);
+	error_log( $command );
 	$output = shell_exec( $command );
+	error_log( $output );
 }
 
 function start_backstop_test( $post ) {
@@ -361,11 +380,16 @@ function start_backstop_test( $post ) {
 			$project_id
 		)
 	) ) {
-		$prefix = 'export PATH="/opt/homebrew/bin/:$PATH" && cd ' . __DIR__ . ' && '; // Assume node installed with homebrew.
+		$prefix = 'export PATH="/opt/homebrew/bin/:$PATH" && cd "' . __DIR__ . '" &&'; // Assume node installed with homebrew.
 
-		// @todo: Pass project_id as CLI argument.
-		$command = $prefix . 'npm run test:csv 2>&1';
+		$command = sprintf(
+			'%s backstop test --config=test/mainConfigCSV.js --project_id="%s"',
+			$prefix,
+			$project_id
+		);
+		error_log( $command );
 		$output = shell_exec( $command );
+		error_log( $output );
 
 		return false;
 	}else {
@@ -377,6 +401,8 @@ function start_backstop_test( $post ) {
 add_filter(
 	'the_content',
 	function( $c ) {
+		global $post;
+
 		if ( 'visual' !== get_post_type() ) {
 			return $c;
 		}
@@ -384,6 +410,31 @@ add_filter(
 		$project_id = get_post_meta( get_the_ID(), 'project_id', true );
 
 		if ( 'processing' === $status ) {
+			if ( ! is_dir(
+				sprintf(
+					'%s/backstop_data/%s/bitmaps_reference',
+					__DIR__,
+					$project_id
+				)
+			) ) {
+				// @see https://wordpress.stackexchange.com/questions/180131/call-function-without-having-to-wait-on-response
+				wp_remote_get(
+					add_query_arg(
+						[
+							'action' => 'visual-start-reference',
+							'id' => get_the_ID(),
+						],
+						admin_url( 'admin-ajax.php' )
+					),
+					[
+						'timeout'   => 0.01,
+						'blocking'  => false,
+						'sslverify' => false,
+					]
+				);
+				return 'Starting reference tests...';
+			}
+
 			if ( ! is_dir(
 				sprintf(
 					'%s/backstop_data/%s/html_report',
@@ -402,7 +453,7 @@ add_filter(
 
 				$backstop_test_files_in_progress = glob(
 					sprintf(
-						'%s/backstop_data/%s/bitmaps_test/*',
+						'%s/backstop_data/%s/bitmaps_test/*/*',
 						__DIR__,
 						$project_id
 					)
@@ -425,12 +476,19 @@ add_filter(
 						)
 					)
 				) {
-					$post = get_post( get_the_ID() );
-					add_action(
-						'shutdown',
-						function() use ( $post ) {
-							start_backstop_test( $post );
-						}
+					wp_remote_get(
+						add_query_arg(
+							[
+								'action' => 'visual-start-test',
+								'id' => get_the_ID(),
+							],
+							admin_url( 'admin-ajax.php' )
+						),
+						[
+							'timeout'   => 0.01,
+							'blocking'  => false,
+							'sslverify' => false,
+						]
 					);
 				}
 			}else {
@@ -449,7 +507,7 @@ add_filter(
 			}
 
 			return sprintf(
-				'%s of %s references processed. %s of %s tests processed.',
+				'%s of %s references processed. %s of %s comparisons processed.',
 				number_format( count( $backstop_files_in_progress ) ),
 				number_format( $expected_files ),
 				number_format( count( $backstop_test_files_in_progress ) ),

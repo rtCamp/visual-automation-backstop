@@ -1,16 +1,23 @@
 const basicConfig = require("./basicConfig");
+
+let project_id = '';
+
+process.argv.forEach( function( value ) {
+  if ( -1 !== value.indexOf('--project_id=' ) ) {
+    project_id = value.replace('--project_id=', '' );
+  }
+} );
+
 // Get user defined scenario json
-const scenarioJSON = require('../data/scenarios-' + basicConfig.projectId + '.json');
+const scenarioJSON = require('../data/scenarios-' + project_id + '.json');
 const THREE_SECONDS_IN_MS = 3000;
 const viewports = [];
-
-
 
 let testScenarios = [];
 
 scenarioJSON.map((s) => {
   const obj = {
-    cookiePath: "backstop_data/"+basicConfig.projectId+"/engine_scripts/cookies.json",
+    cookiePath: "backstop_data/"+project_id+"/engine_scripts/cookies.json",
     readyEvent: "",
     readySelector: "",
     delay: THREE_SECONDS_IN_MS,
@@ -48,16 +55,14 @@ function pushViewport(viewport, width, height) {
     });
   }
 
-console.log( 'ProjectID|'+basicConfig.projectId )
-
 module.exports = {
-  id: basicConfig.projectId,
+  id: project_id,
   viewports,
   scenarios: testScenarios,
   paths: {
-    bitmaps_reference: "backstop_data/"+basicConfig.projectId+"/bitmaps_reference",
-    bitmaps_test: "backstop_data/"+basicConfig.projectId+"/bitmaps_test",
-    html_report: "backstop_data/"+basicConfig.projectId+"/html_report",
+    bitmaps_reference: "backstop_data/"+project_id+"/bitmaps_reference",
+    bitmaps_test: "backstop_data/"+project_id+"/bitmaps_test",
+    html_report: "backstop_data/"+project_id+"/html_report",
     engine_scripts: "test/engine_scripts"
 
   },
