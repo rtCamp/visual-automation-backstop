@@ -322,7 +322,7 @@ function xml_sitemap_to_csv( $post ) {
 		]);
 
 		foreach ($urls as $key => $url) {
-			if ( $key > 10 ) { continue; } // limit URL count for shorter test runs.
+			// if ( $key > 10 ) { continue; } // limit URL count for shorter test runs.
 			fputcsv($fp, [
 				sanitize_title( $url ),
 				esc_url_raw( $url ),
