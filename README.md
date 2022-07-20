@@ -1,5 +1,5 @@
 # Visual Automation with BackstopJS
-Script to do visual testing with [BackstopJS](https://github.com/garris/BackstopJS)
+A Script to do visual testing with [BackstopJS](https://github.com/garris/BackstopJS)
 
 ## Configuration
 
@@ -34,4 +34,6 @@ If you have only few URLs and don't want to maintain a seperate CSV file. You sh
 2. Run the test(It will take the screenshot of the given site and will test against reference screenshot)
  `npm run test:csv`
 
+## BTW, We're Hiring!
 
+<a href="https://rtcamp.com/"><img src="https://rtcamp.com/wp-content/uploads/sites/2/2019/04/github-banner@2x.png" alt="Join us at rtCamp, we specialize in providing high performance enterprise WordPress solutions"></a>
