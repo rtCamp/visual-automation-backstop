@@ -9,7 +9,7 @@ We have two options in this basic framework to run the tests.
 ### CSV file for URLs (Recommended for big projects)
 If you have a large number of URLs (>1000) that you would like to test then you should configure the following files
 1. First, you should have one CSV file having a standard format. You can download the Sample CSV file from [here](https://drive.google.com/file/d/1Jw4EjXcY4yWTghEePDJ1cnT0d1rwGrbQ/view)
-2. After downloading just replace the URLs in the CSV file and keep this in `./data/` directory orany path of your choice. Just make sure to add the path in package.json under `input`
+2. After downloading just replace the URLs in the CSV file and keep this in `./data/` directory or any path of your choice. Just make sure to add the path in package.json under `input`
 
 ### Keep the URLs in code only (Recommended for small projects)
 If you have only a few URLs and don't want to maintain a seperate CSV file, you should configure mainConfig.js
