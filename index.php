@@ -12,6 +12,10 @@ namespace Visual;
 
 if ( ! defined( 'ABSPATH') ) { exit; }
 
+define( 'VISUAL_NODE_DIRECTORY', '/opt/homebrew/bin/' ); // Directory which contains Node & npm.
+define( 'VISUAL_LOG', true ); // Log commands as they run.
+define( 'VISUAL_MAXIMUM_URLS', 10 ); // Change 10 to PHP_INT_MAX to scan all URLs.
+
 add_action(
 	'init',
 	function(){
@@ -275,8 +279,13 @@ function xml_sitemap_to_csv( $post ) {
 	$project_id = get_post_meta( $post->ID, 'project_id', true );
 	$live_url = get_post_meta( $post->ID, 'live_url', true );
 	$dev_url = get_post_meta( $post->ID, 'dev_url', true );
+	$csv_file = __DIR__ . '/data/' . $project_id . '.csv';
 
-	if ( ! file_exists( __DIR__ . '/data/' . $project_id . '.csv' ) ) {
+	if ( VISUAL_LOG ) {
+		error_log( sprintf( 'CSV: %s', $csv_file ) );
+	}
+
+	if ( ! file_exists( $csv_file ) ) {
 		$urls = [];
 
 		// @todo: convert to wp_remote_get() and check for 404.
@@ -314,14 +323,20 @@ function xml_sitemap_to_csv( $post ) {
 
 		}
 
-		$fp = fopen( __DIR__ . '/data/' . $project_id . '.csv', 'w');
+		$fp = fopen( $csv_file, 'w');
 
 		fputcsv($fp, [
 			'label','referenceUrl','url',
 		]);
 
+		fputcsv($fp, [
+			sanitize_title( $live_url ),
+			esc_url_raw( $live_url ),
+			esc_url_raw( $dev_url )
+		]);
+
 		foreach ($urls as $key => $url) {
-			if ( $key > 10 ) { continue; } // limit URL count for shorter test runs.
+			if ( $key > VISUAL_MAXIMUM_URLS ) { continue; } // limit URL count for shorter test runs.
 			fputcsv($fp, [
 				sanitize_title( $url ),
 				esc_url_raw( $url ),
@@ -360,7 +375,7 @@ add_action(
 );
 
 function start_backstop_reference( $post ) {
-	$prefix = 'export PATH="/opt/homebrew/bin/:$PATH" && cd "' . __DIR__ . '" && '; // Assume node installed with homebrew.
+	$prefix = 'export PATH="' . VISUAL_NODE_DIRECTORY . ':$PATH" && cd "' . __DIR__ . '" && '; // Assume node installed with homebrew.
 
 	$project_id = get_post_meta( $post->ID, 'project_id', true );
 
@@ -370,6 +385,9 @@ function start_backstop_reference( $post ) {
 		$project_id,
 		$project_id
 	);
+	if ( VISUAL_LOG ) {
+		error_log( sprintf( 'Visual Command: %s', $command ) );
+	}
 	$output = shell_exec( $command );
 }
 
@@ -383,13 +401,16 @@ function start_backstop_test( $post ) {
 			$project_id
 		)
 	) ) {
-		$prefix = 'export PATH="/opt/homebrew/bin/:$PATH" && cd "' . __DIR__ . '" &&'; // Assume node installed with homebrew.
+		$prefix = 'export PATH="' . VISUAL_NODE_DIRECTORY . ':$PATH" && cd "' . __DIR__ . '" &&'; // Assume node installed with homebrew.
 
 		$command = sprintf(
 			'%s backstop test --config=test/mainConfigCSV.js --project_id="%s"',
 			$prefix,
 			$project_id
 		);
+		if ( VISUAL_LOG ) {
+			error_log( sprintf( 'Visual Command: %s', $command ) );
+		}
 		$output = shell_exec( $command );
 
 		return false;
