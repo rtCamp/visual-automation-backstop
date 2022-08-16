@@ -1,5 +1,5 @@
 # Visual Automation Framework with BackstopJS
-A Script to conduct visual testing with [BackstopJS](https://github.com/garris/BackstopJS). This script can give you the confidence of delivering a bug free UI and can save you from monotonus work of regression testing. The Visual Automation framework is a quick and efficient tool to identify visual changes without vetting through the whole application manually. 
+A script to conduct visual testing with [BackstopJS](https://github.com/garris/BackstopJS). This script can give you the confidence of delivering a bug free UI and can save you from monotonus work of regression testing. This Visual Automation framework is a quick and efficient tool to identify visual changes without vetting through the whole application manually. 
 
 
 ## Configuration
