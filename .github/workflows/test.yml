@@ -2,7 +2,11 @@ on:
   push: # Run this action when push event triggers.
     branches: # Run this action on specified branches
       - basic-framework # Branch name
-
+      - add/reference-url-in-pr
+  pull_request: # Run this action when push event triggers.
+    branches: # Run this action on specified branches
+      - basic-framework # Branch name
+      - add/reference-url-in-pr
 name: Run BackstopJS test cases # Name of the action
 jobs:
   Run-BackstopJS-TestCase:
