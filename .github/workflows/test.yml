@@ -9,7 +9,7 @@ on:
       - add/reference-url-in-pr
 name: Run BackstopJS test cases # Name of the action
 jobs:
-  Run-BackstopJS-TestCase:
+  Run-BackstopJS-TestCases:
     name: Run BackstopJS test Case #
     runs-on: ubuntu-latest
     steps:
