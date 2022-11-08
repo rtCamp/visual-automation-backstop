@@ -12,6 +12,10 @@ jobs:
     - uses: actions/checkout@master
     - name: Install BackstopJS Dependecy 
       run: npm install
+
+    - name: Run shell Script
+      run: ./bin/main.sh
+      shell: bash 
     
     - name: Create reference screenshot from source site
       run: npm run reference
