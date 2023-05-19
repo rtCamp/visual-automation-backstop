@@ -21,8 +21,9 @@ apt update && apt-get install -y ca-certificates fonts-liberation libappindicato
 ```
 
 ## Provide node path
-- In `index.php` line no. 15
-  `define( 'VISUAL_NODE_DIRECTORY', '<your/system/node/directory>' ); // Directory which contains Node & npm.`
+- In `index.php` line no. 15 change your system's node directory path constant.
+
+`define( 'VISUAL_NODE_DIRECTORY', '<your/system/node/directory>' ); // Directory which contains Node & npm.`
 
 ## Install the depedencies
 `npm install`
