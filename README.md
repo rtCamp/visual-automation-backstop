@@ -13,12 +13,15 @@ If you have thousands of URLs that you would like to test then you should config
 ### Keep the URLs in code only (Recommended for small projects)
 If you have only few URLs and don't want to maintain a seperate CSV file. You should configure mainConfig.js
 1. Change the `baseUrl`, `referenceUrl` as per your requirement.  
-2. Add the slugs in `relativeUrls` array. 
+2. Add the slugs in `relativeUrls` array.
 
 ## Install following system dependencies for Ubuntu(Linux)
 ```
 apt update && apt-get install -y ca-certificates fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgbm1 libgcc1 libglib2.0-0 libgtk-3-0 libnspr4 libnss3 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 lsb-release wget xdg-utils
 ```
+
+### Node version: 16
+- link: https://deb.nodesource.com/setup_16.x
 
 ## Provide node path
 - In `index.php` line no. 15 change your system's node directory path constant.
