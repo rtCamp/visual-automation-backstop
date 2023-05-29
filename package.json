@@ -5,13 +5,11 @@
   "scripts": {
     "parse:csv": "node ./bin/csv-parser.js",
     "backstop:reference": "backstop reference --config=test/mainConfig.js",
-    "reference": "npm run backstop:reference",
+    "reference": "node ./bin/sitemapurls.js && node ./bin/csv-reader.js && npm run backstop:reference",
     "backstop:test": "backstop test --config=test/mainConfig.js",
-    "test": "npm run backstop:test",
+    "test": "node ./bin/csv-reader.js && npm run backstop:test",
     "reference:csv": "npm run parse:csv && backstop reference --config=test/mainConfigCSV.js",
     "test:csv": "backstop test --config=test/mainConfigCSV.js"
-
-
   },
   "author": "Juhi Saxena",
   "license": "MIT",
@@ -19,6 +17,7 @@
     "backstopjs": "6.0.4",
     "csv-parser": "^3.0.0",
     "current-git-branch": "1.1.0",
+    "sitemapper": "^3.2.6",
     "fs": "^0.0.1-security"
   },
   "repository": {
