@@ -1,15 +1,15 @@
 const Sitemapper = require("sitemapper");
 const fs = require('fs');
-const { checkPrimeSync } = require("crypto");
-
+const dotenv = require('dotenv');
+dotenv.config();
 
 const sitemap = new Sitemapper();
 
 var siteURLS = [];
 
-sitemap.fetch("https://rtcamp.com/sitemap_index.xml").then(function (sites) {
-  const urlValue = Object.values(sites);
 
+sitemap.fetch(process.env.baseUrl+ "/sitemap_index.xml").then(function (sites) {
+  const urlValue = Object.values(sites);
   
   for (var i = 0; i < urlValue.length; i++) {
     if (Array.isArray(urlValue[i])) {
@@ -25,8 +25,10 @@ sitemap.fetch("https://rtcamp.com/sitemap_index.xml").then(function (sites) {
       }
     }
   }
+  const numberOfURL = siteURLS.length(); // Add the number of URLs here. 
+  const userdefineURLSize = siteURLS.slice(0,numberOfURL);
 
-  const csvContent = siteURLS.join(',');
+  const csvContent = userdefineURLSize.join(',');
 
 fs.writeFile('output.csv', csvContent, function(err) {
   if (err) {
