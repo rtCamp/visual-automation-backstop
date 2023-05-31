@@ -1,10 +1,12 @@
 const basicConfig = require("./basicConfig");
 const THREE_SECONDS_IN_MS = 3000;
+const dotenv = require('dotenv');
+dotenv.config();
 const scenarios = [];
 const viewports = [];
 const relativeUrls = require('../bin/csv-reader');
-const baseUrl = "https://rtcamp.com/" // Replace the value "https://example.com" by the base URL of the website you want to test. It could be your development site and you want to make sure recent changes didn't break the UI
-const referenceUrl = "https://rtcamp2-preprod.go-vip.net/rtcamp/" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with. It could be your production site.
+const baseUrl =  process.env.baseUrl // Replace the value "https://example.com" by the base URL of the website you want to test. It could be your development site and you want to make sure recent changes didn't break the UI
+const referenceUrl = process.env.referenceUrl //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with. It could be your production site.
 
 let config = []; 
 

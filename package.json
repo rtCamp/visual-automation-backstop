@@ -17,8 +17,9 @@
     "backstopjs": "6.0.4",
     "csv-parser": "^3.0.0",
     "current-git-branch": "1.1.0",
-    "sitemapper": "^3.2.6",
-    "fs": "^0.0.1-security"
+    "dotenv": "^16.0.3",
+    "fs": "^0.0.1-security",
+    "sitemapper": "^3.2.6"
   },
   "repository": {
     "type": "git",
