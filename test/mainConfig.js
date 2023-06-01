@@ -1,19 +1,19 @@
 const basicConfig = require("./basicConfig");
 const THREE_SECONDS_IN_MS = 3000;
+const dotenv = require('dotenv');
+dotenv.config();
 const scenarios = [];
 const viewports = [];
-const baseUrl = "https://example.com" // Replace the value "https://example.com" by the base URL of the website you want to test. It could be your development site and you want to make sure recent changes didn't break the UI
-const referenceUrl = "https://example.com" //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with. It could be your production site.
+const relativeUrls = require('../bin/csv-reader');
+const baseUrl =  process.env.baseUrl // Replace the value "https://example.com" by the base URL of the website you want to test. It could be your development site and you want to make sure recent changes didn't break the UI
+const referenceUrl = process.env.referenceUrl //Optional URL, Replace the value "https://reference.com" by the reference URL of the website you want to compare with. It could be your production site.
 
 let config = []; 
 
 // Replace the values of the below array with the relative URLs of your website. E.g., "/about", "/contact", "/pricing", etc.
 // Use just "/" to test the homepage of your website.
 // Add as many relative URLs as you need.
-const relativeUrls = [
-  "/",
-  "/slug1/"
-];
+
 
 //If you need to add any selector specific to some URLs, you may add here 
 //Kept the "slug2" so that it doesn't look for placeholder selctor
