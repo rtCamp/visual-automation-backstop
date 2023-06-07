@@ -25,7 +25,7 @@ sitemap.fetch(process.env.baseUrl+ "/sitemap_index.xml").then(function (sites) {
       }
     }
   }
-  const numberOfURL = siteURLS.length(); // Add the number of URLs here. 
+  const numberOfURL = siteURLS.length; // Add the number of URLs here. 
   const userdefineURLSize = siteURLS.slice(0,numberOfURL);
 
   const csvContent = userdefineURLSize.join(',');
