@@ -23,7 +23,7 @@ If you have only a few URLs and don't want to maintain a seperate CSV file, you 
 ### Sitemap XML Feature (Recommended for big projects)
 If your site have large number of URL's that you would like to test without adding those URLs to CSV or manually adding them we recommend to use Sitemap XML Feature with which you the site URLs will be automatically fetched and you can perform testing on the fetched URLs. You should configure the following files for using Sitemap XML Feature:
 1. Create a `.env` file and add the `baseUrl` and the `referenceUrl` to this file.
-2. [Install](#install-the-dependencies) the dependencies and Execute the [run](#Run-the-tests-without-CSV)command
+2. [Install](#install-the-dependencies) the dependencies and Execute the [run](#Run-the-tests-without-CSV) command
 
 
 ## Install the dependencies
