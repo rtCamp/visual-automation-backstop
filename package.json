@@ -1,7 +1,7 @@
 {
   "name": "visual-automation",
   "description": "Backstop Tests",
-  "version": "1.0.0",
+  "version": "1.1",
   "scripts": {
     "parse:csv": "node ./bin/csv-parser.js",
     "backstop:reference": "backstop reference --config=test/mainConfig.js",
