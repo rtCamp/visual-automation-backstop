@@ -2,10 +2,12 @@
 A Script to conduct visual testing with [BackstopJS](https://github.com/garris/BackstopJS). This script can give you the confidence of delivering a bug free UI and can save you from monotonus work of regression testing. The Visual Automation framework is a quick and efficient tool to identify visual changes without vetting through the whole application manually. 
 
 
-## Changelog
-## v1.1 [June 7 2023]
-### NEW FEATURES
-Add sitemap.xml Feature.
+## Changelog ##
+### v1.1 [June 7, 2023] ###
+
+* NEW FEATURES
+
+    * Support for Sitemap.xml
 
 ## Configuration
 
