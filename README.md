@@ -4,6 +4,7 @@ A Script to conduct visual testing with [BackstopJS](https://github.com/garris/B
 
 ## Changelog
 ## v1.1 [June 7 2023]
+## NEW FEATURES
 Add sitemap.xml Feature.
 
 ## Configuration
