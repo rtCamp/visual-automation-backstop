@@ -1,25 +1,32 @@
 {
   "name": "visual-automation",
   "description": "Backstop Tests",
-  "version": "1.1",
+  "version": "1.1.0",
   "scripts": {
     "parse:csv": "node ./bin/csv-parser.js",
     "backstop:reference": "backstop reference --config=test/mainConfig.js",
-    "reference": "node ./bin/sitemapurls.js && node ./bin/csv-reader.js && npm run backstop:reference",
+    "reference": "npm run backstop:reference",
     "backstop:test": "backstop test --config=test/mainConfig.js",
     "test": "node ./bin/csv-reader.js && npm run backstop:test",
     "reference:csv": "npm run parse:csv && backstop reference --config=test/mainConfigCSV.js",
-    "test:csv": "backstop test --config=test/mainConfigCSV.js"
+    "test:csv": "backstop test --config=test/mainConfigCSV.js",
+    "reference:xml": "node ./bin/sitemapurls.js && node ./bin/csv-reader.js && backstop reference --config=test/mainConfigXML.js",
+    "test:xml": "backstop test --config=test/mainConfigXML.js"
   },
   "author": "Juhi Saxena",
   "license": "MIT",
   "dependencies": {
+    "axios": "^1.4.0",
     "backstopjs": "6.0.4",
     "csv-parser": "^3.0.0",
     "current-git-branch": "1.1.0",
     "dotenv": "^16.0.3",
     "fs": "^0.0.1-security",
-    "sitemapper": "^3.2.6"
+    "prompt-sync": "^4.2.0",
+    "sitemap": "^7.1.1",
+    "sitemap-parser": "^0.1.0",
+    "sitemapper": "^3.2.6",
+    "xmldom": "^0.6.0"
   },
   "repository": {
     "type": "git",

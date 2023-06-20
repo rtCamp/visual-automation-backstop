@@ -30,7 +30,7 @@ sitemap.fetch(process.env.baseUrl+ "/sitemap_index.xml").then(function (sites) {
 
   const csvContent = userdefineURLSize.join(',');
 
-fs.writeFile('output.csv', csvContent, function(err) {
+fs.writeFile('data/output.csv', csvContent, function(err) {
   if (err) {
     console.error('Error writing CSV file:', err);
   } else {
