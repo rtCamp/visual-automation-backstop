@@ -16,33 +16,11 @@ let config = [];
 // Add as many relative URLs as you need.
 
 
-//If you need to add any selector specific to some URLs, you may add here 
-//Kept the "slug2" so that it doesn't look for placeholder selctor
+//All the relative URLs from array are being pushed into the configuration file
 relativeUrls.map(relativeUrl => {
-  if (relativeUrl === "/slug2" || relativeUrl === "/slug2/?amp") {
-    scrollToSelector = ".someselector"; 
-    rmvSelector = ".someselector1"
-    config.push({
-      relURL: relativeUrl,
-      scrlSelector: scrollToSelector, //To scroll to some specific selector
-      rmvSelector: rmvSelector //To remove any non stable selector from page
-     })
-  }
-  else if (relativeUrl === "/slug3") {
-    rmvSelector = ".someselector3"
-    config.push({
-      relURL: relativeUrl,
-      rmvSelector: rmvSelector //To remove any non stable selector from page 
-     })
-  }
-  else {
-    //If you don't need any specific selector to be removed or any other condition
-    // then just add below block and remove other code
     config.push({
       relURL: relativeUrl
      })
-  }
-  
 });
 
 config.map(config => {
