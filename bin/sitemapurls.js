@@ -8,7 +8,7 @@ const sitemap = new Sitemapper();
 var siteURLS = [];
 
 
-sitemap.fetch(process.env.baseUrl+ "/sitemap_index.xml").then(function (sites) {
+sitemap.fetch(process.env.referenceUrl+ "/sitemap_index.xml").then(function (sites) {
   const urlValue = Object.values(sites);
   
   for (var i = 0; i < urlValue.length; i++) {
@@ -30,7 +30,7 @@ sitemap.fetch(process.env.baseUrl+ "/sitemap_index.xml").then(function (sites) {
 
   const csvContent = userdefineURLSize.join(',');
 
-fs.writeFile('output.csv', csvContent, function(err) {
+fs.writeFile('data/output.csv', csvContent, function(err) {
   if (err) {
     console.error('Error writing CSV file:', err);
   } else {
