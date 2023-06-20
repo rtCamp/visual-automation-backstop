@@ -8,7 +8,7 @@ const sitemap = new Sitemapper();
 var siteURLS = [];
 
 
-sitemap.fetch(process.env.baseUrl+ "/sitemap_index.xml").then(function (sites) {
+sitemap.fetch(process.env.referenceUrl+ "/sitemap_index.xml").then(function (sites) {
   const urlValue = Object.values(sites);
   
   for (var i = 0; i < urlValue.length; i++) {
