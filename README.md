@@ -2,10 +2,12 @@
 A script to conduct visual testing with [BackstopJS](https://github.com/garris/BackstopJS). This script can give you the confidence of delivering a bug free UI and can save you from monotonus work of regression testing. This Visual Automation framework is a quick and efficient tool to identify visual changes without vetting through the whole application manually. 
 
 
-## Changelog
-## v1.1 [June 7 2023]
-### NEW FEATURES
-Add sitemap.xml Feature.
+## Changelog ##
+### v1.1 [June 7, 2023] ###
+
+* NEW FEATURES
+
+    * Support for Sitemap.xml
 
 ## Configuration
 
@@ -25,6 +27,8 @@ If you have only a few URLs and don't want to maintain a seperate CSV file, you 
 If your site have large number of URL's that you would like to test without adding those URLs to CSV or manually adding them we recommend to use Sitemap XML Feature with which you the site URLs will be automatically fetched and you can perform testing on the fetched URLs. You should configure the following files for using Sitemap XML Feature:
 1. Create a `.env` file and add the `baseUrl` and the `referenceUrl` to this file.
 2. [Install](#install-the-dependencies) the dependencies and Execute the [run](#Run-the-tests-without-CSV) command
+3. Create reference screenshot from reference site (For expected results) `npm run reference:xml`
+4. Run the test(It will take the screenshot of the given site and will test against reference screenshot) `npm run test:xml`
 
 
 ## Install the dependencies
