@@ -13,6 +13,10 @@ let config = [];
 // Use just "/" to test the homepage of your website.
 // Add as many relative URLs as you need.
 
+const relativeUrls = [
+  "/",
+  "/slug1/"
+];
 
 //If you need to add any selector specific to some URLs, you may add here 
 //Kept the "slug2" so that it doesn't look for placeholder selctor
