@@ -33,7 +33,7 @@ jobs:
 
     - name: Archive HTML Report 
       if: always()
-      uses: actions/upload-artifact@v1
+      uses: actions/upload-artifact@v4
       with:
         name: html-report
         path: ./backstop_data/
