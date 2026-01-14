@@ -25,7 +25,7 @@
     "prompt-sync": "^4.2.0",
     "sitemap": "^7.1.1",
     "sitemap-parser": "^0.1.0",
-    "sitemapper": "^3.2.6",
+    "sitemapper": "^4.0.2",
     "xmldom": "^0.6.0"
   },
   "repository": {
