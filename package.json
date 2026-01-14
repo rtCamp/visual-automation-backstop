@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.4.0",
-    "backstopjs": "6.0.4",
+    "backstopjs": "6.3.25",
     "csv-parser": "^3.0.0",
     "current-git-branch": "2.0.2",
     "dotenv": "^16.0.3",
